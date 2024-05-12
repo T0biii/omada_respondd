@@ -1,4 +1,4 @@
-controller_url: https://unifi.lan
+controller_url: https://omada.lan
 controller_port: 8443
 username: ubnt
 password: ubnt
