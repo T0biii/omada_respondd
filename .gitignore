@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 unifi_respondd.yaml
 omada_respondd.yaml
+OMADA_respondd.yaml
