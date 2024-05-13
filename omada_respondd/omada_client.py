@@ -62,6 +62,9 @@ class Accesspoint:
     neighbour_macs: List[str]
     domain_code: str
     autoupdater: bool
+    frequency24: int
+    frequency5: int
+
 
 
 @dataclasses.dataclass
@@ -108,6 +111,12 @@ def scrape(url):
         logger.error("Error: %s" % (ex))
 
 
+def get_ap_frequency(channelData):
+    parts = channelData.split('/')
+    # Der zweite Teil enthält die MHz-Zahl
+    return int(parts[1].replace('MHz', '').strip())
+
+
 def get_infos():
     """This function gathers all the information and returns a list of Accesspoint objects."""
     cfg = config.Config.from_dict(config.load_config())
@@ -149,6 +158,10 @@ def get_infos():
                 # containsSSID = False
                 tx = 0
                 rx = 0
+
+                client_count=ap.get("clientNum"),
+                client_count24=ap.get("clientNum2g"),
+                client_count5=ap.get("clientNum5g"),
                 # if ssids is not None:
                 # for ssid in ssids:
                 # if re.search(cfg.ssid_regex, ssid.get("essid", "")):
@@ -162,6 +175,19 @@ def get_infos():
                 # client_count5,
                 # ) = get_client_count_for_ap(ap.get("mac", None), clients, cfg)
                 neighbour_macs = []
+
+                moreAPInfos.get("cpuUtil") #in Prozent 
+                moreAPInfos.get("memUtil") # in Prozent
+
+
+                wp2g = moreAPInfos.get("wp2g", None)
+                if wp2g.get("actualChannel", None) is not None:
+                    frequency24 = get_ap_frequency(wp2g.get("actualChannel"))
+
+                wp5g = moreAPInfos.get("wp5g", None)
+                if wp5g.get("actualChannel", None) is not None:
+                    frequency5 = get_ap_frequency(wp5g.get("actualChannel"))
+
 
                 try:
                     neighbour_macs.append(cfg.offloader_mac.get(site["name"], None))
@@ -209,9 +235,11 @@ def get_infos():
                             name=ap.get("name", None),
                             mac=ap.get("mac", None).replace("-",":").lower(),
                             snmp_location=snmp.get("location", None),
-                            client_count=ap.get("clientNum"),
-                            client_count24=ap.get("clientNum2g"),
-                            client_count5=ap.get("clientNum5g"),
+                            client_count=client_count,
+                            client_count24=client_count24,
+                            client_count5=client_count5,
+                            frequency24=frequency24,
+                            frequency5=frequency5,
                             latitude=float(lat),
                             longitude=float(lon),
                             model=ap.get("model", None),
