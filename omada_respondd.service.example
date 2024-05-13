@@ -1,12 +1,12 @@
 [Unit]
-Description=unifi_respondd
+Description=omada_respondd
 After=syslog.target network-online.target
 
 [Service]
 Type=simple
 DynamicUser=yes
-WorkingDirectory=/opt/unifi_respondd
-ExecStart=/opt/unifi_respondd/respondd.py
+WorkingDirectory=/opt/omada_respondd
+ExecStart=/opt/omada_respondd/respondd.py
 Restart=always
 
 CapabilityBoundingSet=CAP_NET_BIND_SERVICE CAP_NET_RAW
