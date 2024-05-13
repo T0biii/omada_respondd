@@ -159,14 +159,16 @@ def get_infos():
                 
                 tx = 0
                 rx = 0 
-                uplink = moreAPInfos.get("wiredUplink", None)
-                lan = moreAPInfos.get("lanTraffic", None)
-                if uplink.get("upBytes", None) is not None and uplink.get("downBytes", None) is not None:
-                    tx = uplink.get("upBytes")
-                    rx = uplink.get("downBytes")
-                elif lan.get("rx", None) is not None and lan.get("tx", None) is not None:
-                    rx = lan.get("rx")
-                    tx = lan.get(tx)
+                
+                radioTraffic2g = moreAPInfos.get("radioTraffic2g", None)
+                if radioTraffic2g is not None:
+                    tx = tx + radioTraffic2g.get("tx", 0)
+                    rx = rx + radioTraffic2g.get("rx", 0)
+
+                radioTraffic5g = moreAPInfos.get("radioTraffic5g", None)
+                if radioTraffic5g is not None:
+                    tx = tx + radioTraffic5g.get("tx", 0)
+                    rx = rx + radioTraffic5g.get("rx", 0)
 
                 client_count=ap.get("clientNum"),
                 client_count24=ap.get("clientNum2g"),
