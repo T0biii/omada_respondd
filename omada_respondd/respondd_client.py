@@ -253,7 +253,7 @@ class ResponddClient:
                         firmware=FirmwareInfo(base="Omada", release=ap.firmware)
                     ),
                     hostname=ap.name,
-                    node_id=ap.mac.replace("-", ""),
+                    node_id=ap.mac.replace(":", ""),
                     location=LocationInfo(latitude=ap.latitude, longitude=ap.longitude),
                     hardware=HardwareInfo(model=ap.model),
                     owner=OwnerInfo(contact=ap.contact),
@@ -282,7 +282,7 @@ class ResponddClient:
                         wifi5=ap.client_count5,
                     ),
                     uptime=ap.uptime,
-                    node_id=ap.mac.replace("-", ""),
+                    node_id=ap.mac.replace(":", ""),
                     loadavg=ap.load_avg,
                     memory=MemoryInfo(
                         total=int(ap.mem_total / 1024),
@@ -311,7 +311,7 @@ class ResponddClient:
                     nbs[neighbour_mac] = NeighbourDetails(tq=255, lastseen=0.45)
             neighbours.append(
                 NeighboursInfo(
-                    node_id=ap.mac.replace("-", ""),
+                    node_id=ap.mac.replace(":", ""),
                     batadv={ap.mac: Neighbours(neighbours=nbs)},
                 )
             )

@@ -205,7 +205,7 @@ def get_infos():
                     aps.accesspoints.append(
                         Accesspoint(
                             name=ap.get("name", None),
-                            mac=ap.get("mac", None),
+                            mac=ap.get("mac", None).replace("-",":"),
                             snmp_location=snmp.get("location", None),
                             client_count=ap.get("clientNum"),
                             client_count24=ap.get("clientNum2g"),
