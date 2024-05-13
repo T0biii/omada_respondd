@@ -163,7 +163,6 @@ def get_infos():
                 # ) = get_client_count_for_ap(ap.get("mac", None), clients, cfg)
                 neighbour_macs = []
 
-                ### need work
                 try:
                     neighbour_macs.append(cfg.offloader_mac.get(site["name"], None))
                     offloader_id = cfg.offloader_mac.get(site["name"], "").replace(
