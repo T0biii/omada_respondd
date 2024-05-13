@@ -214,8 +214,7 @@ def get_infos():
                             longitude=float(lon),
                             model=ap.get("model", None),
                             firmware=ap.get("version", None),
-                            #uptime=moreAPInfos.get("uptime", None),
-                            uptime=1,
+                            uptime=moreAPInfos.get("uptimeLong", None),
                             contact=snmp.get("contact", None),
                             load_avg=float(
                                 ap.get("sys_stats", {}).get("loadavg_1", 0.0)
