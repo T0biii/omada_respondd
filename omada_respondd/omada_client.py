@@ -191,10 +191,12 @@ def get_infos():
                         #if not lldp_entry.get("is_wired", True):
                             #neighbour_macs.append(lldp_entry.get("chassis_id"))
 
-                ### need work (Use lat first if empty use snmp location infos)
-                #lat = moreAPInfos["location"]["longitude"]
-                #lon = moreAPInfos["location"]["latitude"]
+                # Location
                 lat, lon = 0, 0
+                location = moreAPInfos.get("location", None)
+                if location.get("longitude", None) is not None and location.get("latitude", None) is not None:
+                    lon = location["longitude"]
+                    lat = location["latitude"]
                 
                 snmp = moreAPInfos.get("snmp", None)
                 if snmp.get("location", None) is not None:
