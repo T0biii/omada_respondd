@@ -138,12 +138,12 @@ def get_infos():
         for ap in aps_for_site:
             if (
                 ap.get("name", None) is not None
-                #and (ap.get("status", 0) != 0 and ap.get("status", 0) != 20) ##Offline Check
+                # and (ap.get("status", 0) != 0 and ap.get("status", 0) != 20) ##Offline Check
                 and ap.get("type") == "ap"
             ):
                 moreAPInfos = csite.getSiteAP(mac=ap["mac"])
 
-                #print(str(ap) + "  " + site["name"])
+                # print(str(ap) + "  " + site["name"])
 
                 # ssids = ap.get("vap_table", None)
 
