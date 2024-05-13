@@ -61,6 +61,7 @@ class Accesspoint:
     gateway_nexthop: str
     neighbour_macs: List[str]
     domain_code: str
+    autoupdater: bool
 
 
 @dataclasses.dataclass
@@ -232,6 +233,7 @@ def get_infos():
                             domain_code=offloader.get(
                                 "domain", "ffmuc_omada_respondd_fallback"
                             ),
+                            autoupdater=autoupgrade,
                         )
                     )
     return aps
