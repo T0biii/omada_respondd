@@ -398,7 +398,7 @@ class ResponddClient:
 
     def sendStruct(self, destAddress, responseStruct, withCompression):
         """This method sends the response structure to the respondd server."""
-        logger.debug(
+        logger.info(
             str(destAddress[0]) + " " + str(destAddress[1]) + " " + str(responseStruct)
         )
         merged = self.merge_node(responseStruct)
@@ -417,5 +417,4 @@ class ResponddClient:
                 )
                 responseData = encoder.compress(responseData)
                 responseData += encoder.flush()
-                logger.info(str(responseData))
             self._sock.sendto(responseData, destAddress)
