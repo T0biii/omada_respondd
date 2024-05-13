@@ -193,7 +193,8 @@ def get_infos():
                 ### need work (Use lat first if empty use snmp location infos)
                 #lat = moreAPInfos["location"]["longitude"]
                 #lon = moreAPInfos["location"]["latitude"]
-
+                lat, lon = 0, 0
+                
                 snmp = moreAPInfos.get("snmp", None)
                 if snmp.get("location", None) is not None:
                     try:
