@@ -156,8 +156,17 @@ def get_infos():
                 # ssids = ap.get("vap_table", None)
 
                 # containsSSID = False
+                
                 tx = 0
-                rx = 0
+                rx = 0 
+                uplink = moreAPInfos.get("wiredUplink", None)
+                lan = moreAPInfos.get("lanTraffic", None)
+                if uplink.get("upBytes", None) is not None and uplink.get("downBytes", None) is not None:
+                    tx = uplink.get("upBytes")
+                    rx = uplink.get("downBytes")
+                elif lan.get("rx", None) is not None and lan.get("tx", None) is not None:
+                    rx = lan.get("rx")
+                    tx = lan.get(tx)
 
                 client_count=ap.get("clientNum"),
                 client_count24=ap.get("clientNum2g"),
