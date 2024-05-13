@@ -182,13 +182,14 @@ def get_infos():
                     pass
 
                 uplink = ap.get("uplink", None)
-                if uplink is not None and uplink.get("ap_mac", None) is not None:
-                    neighbour_macs.append(uplink.get("ap_mac"))
-                lldp_table = ap.get("lldp_table", None)
-                if lldp_table is not None:
-                    for lldp_entry in lldp_table:
-                        if not lldp_entry.get("is_wired", True):
-                            neighbour_macs.append(lldp_entry.get("chassis_id"))
+                if uplink is not None:
+                    neighbour_macs.append(uplink)
+
+                #lldp_table = ap.get("lldp_table", None)
+                #if lldp_table is not None:
+                    #for lldp_entry in lldp_table:
+                        #if not lldp_entry.get("is_wired", True):
+                            #neighbour_macs.append(lldp_entry.get("chassis_id"))
 
                 ### need work (Use lat first if empty use snmp location infos)
                 #lat = moreAPInfos["location"]["longitude"]
