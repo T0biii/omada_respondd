@@ -360,6 +360,7 @@ class ResponddClient:
             if self._aps is None:
                 print("continue")
                 continue
+            print("no continue")
             if msgSplit[0] == "GET":  # multi_request
                 for request in msgSplit[1:]:
                     responseStruct[request] = self.buildStruct(request)
