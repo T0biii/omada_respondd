@@ -1,7 +1,7 @@
 controller_url: https://omada.lan
 controller_port: 8443
-username: ubnt
-password: ubnt
+username: omada
+password: omada
 ssid_regex: .*freifunk.*
 offloader_mac:
     SiteName: 00:00:00:00:00:00
