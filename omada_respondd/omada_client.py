@@ -191,8 +191,8 @@ def get_infos():
                             neighbour_macs.append(lldp_entry.get("chassis_id"))
 
                 ### need work (Use lat first if empty use snmp location infos)
-                lat = moreAPInfos["location"]["longitude"]
-                lon = moreAPInfos["location"]["latitude"]
+                #lat = moreAPInfos["location"]["longitude"]
+                #lon = moreAPInfos["location"]["latitude"]
 
                 snmp = moreAPInfos.get("snmp", None)
                 if snmp.get("location", None) is not None:
