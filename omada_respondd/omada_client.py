@@ -165,14 +165,14 @@ def get_infos():
 
                 ### need work
                 try:
-                    neighbour_macs.append(cfg.offloader_mac.get(site["desc"], None))
-                    offloader_id = cfg.offloader_mac.get(site["desc"], "").replace(
+                    neighbour_macs.append(cfg.offloader_mac.get(site["name"], None))
+                    offloader_id = cfg.offloader_mac.get(site["name"], "").replace(
                         ":", ""
                     )
                     offloader = list(
                         filter(
                             lambda x: x["mac"]
-                            == cfg.offloader_mac.get(site["desc"], ""),
+                            == cfg.offloader_mac.get(site["name"], ""),
                             ffnodes["nodes"],
                         )
                     )[0]
@@ -204,6 +204,9 @@ def get_infos():
                         lat, lon = get_location_by_address(snmp["location"], geolookup)
                     except:
                         pass
+
+                    print(lat)
+                    print(lon)
 
                     aps.accesspoints.append(
                         Accesspoint(
