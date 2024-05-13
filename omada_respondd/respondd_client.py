@@ -401,12 +401,17 @@ class ResponddClient:
         logger.debug(
             str(destAddress[0]) + " " + str(destAddress[1]) + " " + str(responseStruct)
         )
-
+        print(1)
         merged = self.merge_node(responseStruct)
+        print(2)
+        
         for infos in merged.values():
+            print(3)
+            
             node = {}
             for key, info in infos.items():
                 node.update({key: info.to_dict()})
+                print(4)
             responseData = bytes(json.dumps(node), "UTF-8")
             logger.info(str(responseData))
 
@@ -416,5 +421,6 @@ class ResponddClient:
                 )
                 responseData = encoder.compress(responseData)
                 responseData += encoder.flush()
-
+            print(5)
             self._sock.sendto(responseData, destAddress)
+            print(6)
