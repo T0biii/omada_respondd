@@ -326,19 +326,19 @@ class ResponddClient:
 
     def sendUnicast(self):
         logger.info("Using unicast method")
-        timeSleep = int(1)
-        # timeSleep = int(60 - (self._timeStop - self._timeStart) % 60)
+        #timeSleep = int(1)
+        timeSleep = int(60 - (self._timeStop - self._timeStart) % 60)
         if self._config.verbose:
             logger.debug("will now sleep " + str(timeSleep) + " seconds")
         time.sleep(timeSleep)
 
     def start(self):
         """This method starts the respondd client."""
-        # self._sock.setsockopt(
-        # socket.SOL_SOCKET,
-        # socket.SO_BINDTODEVICE,
-        # bytes(self._config.interface.encode()),
-        # )
+        self._sock.setsockopt(
+        socket.SOL_SOCKET,
+        socket.SO_BINDTODEVICE,
+        bytes(self._config.interface.encode()),
+        )
         if self._config.multicast_enabled:
             self._sock.bind(("::", self._config.multicast_port))
 
