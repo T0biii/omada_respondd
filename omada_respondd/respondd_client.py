@@ -358,6 +358,7 @@ class ResponddClient:
             self._timeStart = time.time()
             self._aps = omada_client.get_infos()
             if self._aps is None:
+                print("continue")
                 continue
             if msgSplit[0] == "GET":  # multi_request
                 for request in msgSplit[1:]:
