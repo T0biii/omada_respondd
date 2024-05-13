@@ -143,7 +143,6 @@ def get_infos():
             ):
                 moreAPInfos = csite.getSiteAP(mac=ap["mac"])
 
-
                 # ssids = ap.get("vap_table", None)
 
                 # containsSSID = False
@@ -203,9 +202,6 @@ def get_infos():
                         lat, lon = get_location_by_address(snmp["location"], geolookup)
                     except:
                         pass
-
-                    print(lat)
-                    print(lon)
 
                     aps.accesspoints.append(
                         Accesspoint(
