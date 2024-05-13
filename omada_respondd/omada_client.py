@@ -183,7 +183,7 @@ def get_infos():
 
                 uplink = ap.get("uplink", None)
                 if uplink is not None:
-                    neighbour_macs.append(uplink)
+                    neighbour_macs.append(uplink.replace("-",":"))
 
                 #lldp_table = ap.get("lldp_table", None)
                 #if lldp_table is not None:
