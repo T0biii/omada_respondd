@@ -143,7 +143,6 @@ def get_infos():
             ):
                 moreAPInfos = csite.getSiteAP(mac=ap["mac"])
 
-                # print(str(ap) + "  " + site["name"])
 
                 # ssids = ap.get("vap_table", None)
 
@@ -205,7 +204,7 @@ def get_infos():
                     aps.accesspoints.append(
                         Accesspoint(
                             name=ap.get("name", None),
-                            mac=ap.get("mac", None).replace("-",":"),
+                            mac=ap.get("mac", None).replace("-",":").lower(),
                             snmp_location=snmp.get("location", None),
                             client_count=ap.get("clientNum"),
                             client_count24=ap.get("clientNum2g"),
