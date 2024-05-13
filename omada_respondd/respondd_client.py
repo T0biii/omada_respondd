@@ -282,7 +282,7 @@ class ResponddClient:
                         wifi5=ap.client_count5,
                     ),
                     uptime=ap.uptime,
-                    node_id=ap.mac.replace(":", ""),
+                    node_id=ap.mac.replace("-", ""),
                     loadavg=ap.load_avg,
                     memory=MemoryInfo(
                         total=int(ap.mem_total / 1024),
@@ -311,7 +311,7 @@ class ResponddClient:
                     nbs[neighbour_mac] = NeighbourDetails(tq=255, lastseen=0.45)
             neighbours.append(
                 NeighboursInfo(
-                    node_id=ap.mac.replace(":", ""),
+                    node_id=ap.mac.replace("-", ""),
                     batadv={ap.mac: Neighbours(neighbours=nbs)},
                 )
             )
@@ -326,7 +326,6 @@ class ResponddClient:
 
     def sendUnicast(self):
         logger.info("Using unicast method")
-        #timeSleep = int(1)
         timeSleep = int(60 - (self._timeStop - self._timeStart) % 60)
         if self._config.verbose:
             logger.debug("will now sleep " + str(timeSleep) + " seconds")
