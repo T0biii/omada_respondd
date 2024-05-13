@@ -61,6 +61,7 @@ class SoftwareInfo:
         firmware: The firmware information of the AP."""
 
     firmware: FirmwareInfo
+    autoupdater: bool
 
 
 @dataclasses.dataclass
@@ -271,7 +272,8 @@ class ResponddClient:
             nodes.append(
                 NodeInfo(
                     software=SoftwareInfo(
-                        firmware=FirmwareInfo(base="Omada", release=ap.firmware)
+                        firmware=FirmwareInfo(base="Omada", release=ap.firmware),
+                        autoupdater=ap.autoupdater
                     ),
                     hostname=ap.name,
                     node_id=ap.mac.replace(":", ""),
@@ -295,7 +297,7 @@ class ResponddClient:
         statistics = []
         for ap in aps.accesspoints:
             wirelessinfos = []
-            
+
             if ap.frequency24:
                 wirelessinfos.append(
                     WirelessInfo(
