@@ -253,7 +253,7 @@ class ResponddClient:
                         firmware=FirmwareInfo(base="Omada", release=ap.firmware)
                     ),
                     hostname=ap.name,
-                    node_id=ap.mac.replace(":", ""),
+                    node_id=ap.mac.replace("-", ""),
                     location=LocationInfo(latitude=ap.latitude, longitude=ap.longitude),
                     hardware=HardwareInfo(model=ap.model),
                     owner=OwnerInfo(contact=ap.contact),
