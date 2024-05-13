@@ -335,9 +335,9 @@ class ResponddClient:
     def start(self):
         """This method starts the respondd client."""
         self._sock.setsockopt(
-        socket.SOL_SOCKET,
-        socket.SO_BINDTODEVICE,
-        bytes(self._config.interface.encode()),
+            socket.SOL_SOCKET,
+            socket.SO_BINDTODEVICE,
+            bytes(self._config.interface.encode()),
         )
         if self._config.multicast_enabled:
             self._sock.bind(("::", self._config.multicast_port))
